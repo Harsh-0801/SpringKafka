@@ -39,6 +39,7 @@ public class ProductServiceImpl implements ProductService{
                                     result.getRecordMetadata().topic(),
                                     result.getRecordMetadata().partition(),
                                     result.getRecordMetadata().offset());
+
                         }
 
                     });
