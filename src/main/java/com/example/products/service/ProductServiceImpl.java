@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
         ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent(productId, productRestModel.getTitle(), productRestModel.getPrice(),
                 productRestModel.getQuantity());
         try {
-            kafkaTemplate.send("product-created-events-topic", productId, productCreatedEvent)
+            kafkaTemplate.send("topic2", productId, productCreatedEvent)
                     .whenComplete((result, ex) -> {
                         if (ex != null) {
                             log.error("Failed to send kafka message for product id: {}", productId, ex);
@@ -41,7 +41,6 @@ public class ProductServiceImpl implements ProductService{
                                     result.getRecordMetadata().offset());
 
                         }
-
                     });
         }
         catch (Exception e){
